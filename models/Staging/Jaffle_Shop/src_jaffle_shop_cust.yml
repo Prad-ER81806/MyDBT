@@ -1,0 +1,6 @@
+sources:
+  - name: jaffle_123_shop
+    database: raw
+    schema: jaffle_shop
+    tables:
+      - name: CUSTOMERS
