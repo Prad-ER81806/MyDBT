@@ -1,5 +1,6 @@
 sources:
   - name: jaffle_123_shop
+    description: Orders Data
     database: raw
     schema: jaffle_shop
     tables:
