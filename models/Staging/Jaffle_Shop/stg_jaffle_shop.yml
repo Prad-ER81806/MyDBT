@@ -1,14 +1,18 @@
 models:
   - name: stg_jaffle_shop_customers
+    description: Hello customer data
     columns:
       - name: customer_id
+        description: The primary key for customers and test cases for uique and not null
         tests:
           - unique
           - not_null
 
   - name: stg_jaffle_shop_orders
+    description: Orders data
     columns:
       - name: status
+        description: " Accepted values {{ doc('order_status') }}"
         tests:
           - accepted_values:
               values:
@@ -18,11 +22,13 @@ models:
                 - "shipped"
                 - "placed" 
       - name: customer_id
+        description: Primary key with relationship test on customer table
         tests:
           - relationships:
               field: customer_id
               to: ref('stg_jaffle_shop_customers')
       - name: order_id
+        description: "Order id data with not null and unique check and  Accepted values :{{ doc('order_status') }}"
         tests:
           - not_null
           - unique
