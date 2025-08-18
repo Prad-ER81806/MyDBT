@@ -1,15 +1,21 @@
 
 version: 2
-
 models:
     - name: my_first_dbt_model
-      description: "A starter dbt model"
+      description: "A starter dbt model"   
+
+      pre-hook: "insert into RAW.JAFFLE_SHOP.DBT_AUDITS (audit_type) values ('my_first_dbt_model-start')"
+      post-hook: "insert into RAW.JAFFLE_SHOP.DBT_AUDITS (audit_type) values ('my_first_dbt_model-end')"
+
+    #pre-hook: - "insert into audit_log (model_name, run_started_at, environment) values ('{{ this.name }}', '{{ run_started_at }}', '{{ target.name }}')"
+    #post-hook: - "update audit_log set row_count = (select count(*) from {{ this }}) where model_name = '{{ this.name }}'"
+
       columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+        - name: id
+          description: "The primary key for this table"
+          tests:
+              - unique
+              - not_null
 
     - name: my_second_dbt_model
       description: "A starter dbt model"
